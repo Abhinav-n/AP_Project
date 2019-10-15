@@ -1,0 +1,127 @@
+{%extends "ecom/base.html" %}
+{% block content%}
+{% load static %}
+<title>Home</title>
+  <div id="index-banner" class="parallax-container">
+    <div class="section no-pad-bot">
+      <div class="container-fluid">
+        <br><br>
+        <div class="row center">
+        </div>
+        <div class="row center">
+        </div>
+        <br><br>
+      </div>
+    </div>
+    <div class="parallax"><a href=""><img src="{% static 'ecom/image/1.jpg'%}" class = 'responsive-img'></a></div>
+  </div>
+
+  <div class="container">
+    <div class="section">
+          <h5 class="center">Mens</h5>
+      <div class="row">
+        {% for product in productmen %}
+        <div class="col s12 m4">
+          <div class="card">
+            <div class="card-image">
+              <a href="/productview/{{product.id}}"><img src="{{ product.image }}" width="350px" height="250px"></a>
+
+                {% include 'wishlist/addtowishlist.html' with product=product cart=cart %}
+
+            </div>
+            <div class="card-content">
+              <a href="/productview/{{product.id}}" ><span class="card-title" >{{ product.name }}</span></a>
+              <p>{{ product.description }}</p>
+            </div>
+            <div class="card-action">
+                            <h7>Rs. {{product.price}}</h7>
+                <form method="POST" action='{% url "update" %}' class="form">{% csrf_token%}
+                <input type="hidden" name="product_id" value='{{product.id}}'>
+                    {% if in_cart %}
+                   <button type='submit' class="btn btn-link btn-sm">Remove?</button>
+                    {% else %}
+                       {% if product in cart.products.all %}
+                            <small><button type='submit' class="btn btn-link">Remove from cart?</button></small>
+                       {% else %}
+                          <button type='submit' class='btn btn-success'>Add to cart</button>
+                        {% endif %}
+                   {% endif %}
+                   </form>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+
+      </div>
+    </div>
+  </div>
+
+
+  <div class="parallax-container valign-wrapper">
+    <div class="section no-pad-bot">
+      <div class="container">
+      </div>
+    </div>
+    <div class="parallax"><img src="{% static 'ecom/image/2.jpg'%}" class = 'responsive-img'></div>
+  </div>
+
+  <div class="container">
+    <h5 class="center">Womens</h5>
+    <div class="section">
+            <div class="row">
+        {% for product in productwomen %}
+        <div class="col s12 m4">
+          <div class="card">
+            <div class="card-image">
+              <a href="/productview/{{product.id}}"><img src="{{ product.image }}" width="350px" height="250px"></a>
+
+                {% include 'wishlist/addtowishlist.html' with product=product cart=cart %}
+
+            </div>
+            <div class="card-content">
+              <a href="/productview/{{product.id}}" ><span class="card-title" >{{ product.name }}</span></a>
+              <p>{{ product.description }}</p>
+            </div>
+            <div class="card-action">
+                            <h7>Rs. {{product.price}}</h7>
+                <form method="POST" action='{% url "update" %}' class="form">{% csrf_token%}
+                <input type="hidden" name="product_id" value='{{product.id}}'>
+                    {% if in_cart %}
+                   <button type='submit' class="btn btn-link btn-sm">Remove?</button>
+                    {% else %}
+                       {% if product in cart.products.all %}
+                            <small><button type='submit' class="btn btn-link">Remove from cart?</button></small>
+                       {% else %}
+                          <button type='submit' class='btn btn-success'>Add to cart</button>
+                        {% endif %}
+                   {% endif %}
+                   </form>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+
+      </div>
+
+    </div>
+  </div>
+
+
+  <div class="parallax-container valign-wrapper">
+    <div class="section no-pad-bot">
+      <div class="container">
+      </div>
+    </div>
+    <div class="parallax"><img src="{% static 'ecom/image/3.jpg'%}" class = 'responsive-img'></div>
+  </div>
+  <div class="container">
+  <div class="row">
+        <div class="col s12 center">
+          <h3><i class="mdi-content-send brown-text"></i></h3>
+          <h4>About Us</h4>
+          <p class="left-align light">We at Fashion Collection are out here to provide you with what you need to upgrade your style. Whether it is a sleek new belt, a flashy new watch or just an upgrade on your jeans we provide it all! Fashion Kart was started by two college students who decided to make a fashion website for a course but decided to take it further after.</p>
+        </div>
+      </div>
+    </div>
+{% endblock content %}
+

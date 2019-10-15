@@ -1,0 +1,60 @@
+{%extends "ecom/base.html" %}
+{% block content%}
+<title>Accessories</title>
+<main>
+    <div class = "container">
+    <h6 class="text-muted">Want to filter products ?&nbsp;<a class="ml-2" href="{% url 'searchfilter' %}"}>Yes</a></h6>
+    <h5 class="center">Accessories</h5>
+      <div class="section">
+      <div class="row">
+        {% for product in products %}
+        <div class="col s12 m4">
+          <div class="card">
+            <div class="card-image">
+              <a href="/productview/{{product.id}}"><img src="{{ product.image }}" width="350px" height="250px"></a>
+              {% include 'wishlist/addtowishlist.html' with product=product wishlist=wishlist %}
+            </div>
+            <div class="card-content">
+              <a href="/productview/{{product.id}}"><span class="card-title">{{ product.name }}</span></a>
+              <p>{{ product.description }}</p>
+            </div>
+            <div class="card-action">
+                            <h7>Rs. {{product.price}}</h7>
+              <form method="POST" action='{% url "update" %}' class="form">{% csrf_token%}
+                <input type="hidden" name="product_id" value='{{product.id}}'>
+                    {% if in_cart %}
+                   <button type='submit' class="btn btn-link btn-sm">Remove?</button>
+                    {% else %}
+                       {% if product in cart.products.all %}
+                            <small><button type='submit' class="btn btn-link">Remove from cart?</button></small>
+                       {% else %}
+                          <button type='submit' class='btn btn-success'>Add to cart</button>
+                        {% endif %}
+                   {% endif %}
+                   </form>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</main>
+<div class="container">
+<ul class="pagination">
+    {% for p in products.paginator.page_range %}
+      {% if products.number == p %}
+      <li class="page-item active">
+      <a href="?page={{p}}" class="page-link">{{p}}</a>
+      </li>
+      {% else %}
+      <li class="page-item">
+      <a href="?page={{p}}" class="page-link">{{p}}</a>
+      </li>
+      {% endif %}
+    {% endfor %}
+</ul>
+</div>
+</main>
+{% endblock content %}
+

@@ -1,0 +1,26 @@
+{%extends "ecom/base.html" %}
+{% block content%}
+<title>Checkout</title>
+<main>
+
+{% if not billing %}
+<div class="row text center">
+    <div class="col-12 col-md-6">
+        <h3>User Login</h3>
+        {% include 'carts/form.html' with form=login_form next_url=request.build_absolute_uri %}
+    </div>
+<!----    <div class="col-12 col-md-6">
+        <h3>Guest Login</h3>
+        {% url 'guest_page' as guest_url %}
+        {% include 'carts/form.html' with form=guest_form next_url=request.build_absolute_uri action_url=guest_url %}
+    </div>
+</div>
+--->
+{% else %}
+{% if address_query.exists %}
+
+{% endif %}
+{% include 'carts/addressform.html' with form=address_form %}
+{% endif %}
+</main>
+{% endblock content %}

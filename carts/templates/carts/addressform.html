@@ -1,0 +1,23 @@
+{% load crispy_forms_tags %}
+<div class = "container">
+        <div class = 'row'>
+            <div class = 'col s12 m8 offset-m2'>
+                    <h3>Enter Address</h3>
+                    {% if not order.cart.user is none %}
+                    <h6>Username: {{order.cart.user}}</h6>
+                    {% endif %}
+                    <form method="post" action="{% url 'checkout_address' %}">
+                    {% csrf_token %}
+                    {{ form|crispy}}
+                    <br>
+                    <div align = 'center'>
+                        <h6>Total:Rs. {{order.cart.total}}</h6>
+
+                         <h6>Payment: Cash On Delivery</h6>
+                        <button class="btn btn-outline-info" type="submit">Submit</button>
+                    </div>
+                </form>
+                <br>
+            </div>
+        </div>
+</div>
