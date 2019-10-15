@@ -1,4 +1,4 @@
-# Fashion_Collection
+# Fashion Collection
 
 Fashion Collection is an E-commerce website created by Abhinav Nakarmani and Shantanu Kundu for the First Mini Project for Advanced Programming(Monsoon 2019)
 
@@ -8,7 +8,7 @@ Javascript, CSS(http://www.materializecss.com/), Django, python, HTML
 
 # Authors
 
-Abhinav Nakarmani\
+Abhinav Nakarmi\
 Shantanu Kundu
 
 # Set up and initialising(For Windows)
