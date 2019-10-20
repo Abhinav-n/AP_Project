@@ -2,10 +2,12 @@ from django.shortcuts import render, redirect
 from ecom.models import Product
 from .models import Wishlist
 from django.http import HttpResponseRedirect
+from carts.models import Cart
 
 
 def wishlist_home(request):
     wishlist_obj, new_obj = Wishlist.objects.new_or_get(request)
+    cart_obj, new_obj = Cart.objects.new_or_get(request)
     products = wishlist_obj.products.all()
     total = 0
     for i in products:
@@ -15,6 +17,7 @@ def wishlist_home(request):
     wishlist_obj.save()
     context = {
         'wishlist': wishlist_obj,
+        'cart': cart_obj,
     }
     return render(request, "wishlist/home.html", context)
 

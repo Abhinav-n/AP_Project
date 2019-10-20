@@ -12,7 +12,9 @@
           <div class="card">
             <div class="card-image">
               <a href="/productview/{{product.id}}"><img src="{{ product.image }}" width="350px" height="250px"></a>
-              {% include 'wishlist/addtowishlist.html' with product=product wishlist=wishlist %}
+               {% if user.is_authenticated %}
+                {% include 'wishlist/addtowishlist.html' with product=product wishlist=wishlist %}
+              {% endif %}
             </div>
             <div class="card-content">
               <a href="/productview/{{product.id}}"><span class="card-title">{{ product.name }}</span></a>

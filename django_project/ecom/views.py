@@ -17,6 +17,7 @@ def home(request):
         'cart': cart_obj,
         'productmen': productmen,
         'productwomen': productwomen,
+        'wishlist': wishlist_obj,
     }
     return render(request, 'ecom/home.html', context)
 

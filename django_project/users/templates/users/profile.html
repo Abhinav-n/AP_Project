@@ -52,7 +52,7 @@
                 <tbody>
                   <tr>
                 {% for product in cart0.products.all %}
-                    <td><b>{{forloop.counter}}</b></td>
+                    <td><b><a href="/productview/{{product.id}}"><img src="{{ product.image }}" width="350px" height="250px"></a></b></td>
                     <td>{{ product.name }}
                     {% include 'users/form.html' with product=product cart=cart %}
                     </td>

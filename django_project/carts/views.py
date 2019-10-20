@@ -7,10 +7,12 @@ from users.forms import GuestForm
 from orders.forms import AddressForm
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
+from wishlist.models import Wishlist
 
 
 def cart_home(request):
     cart_obj, new_obj = Cart.objects.new_or_get(request)
+    wishlist_obj, new_obj = Wishlist.objects.new_or_get(request)
     products = cart_obj.products.all()
     total = 0
     for i in products:
@@ -19,6 +21,7 @@ def cart_home(request):
     cart_obj.save()
     context = {
         'cart': cart_obj,
+        'wishlist': wishlist_obj,
     }
     return render(request, "carts/home.html", context)
 

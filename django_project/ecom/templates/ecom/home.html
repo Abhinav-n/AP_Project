@@ -26,8 +26,9 @@
             <div class="card-image">
               <a href="/productview/{{product.id}}"><img src="{{ product.image }}" width="350px" height="250px"></a>
 
-                {% include 'wishlist/addtowishlist.html' with product=product cart=cart %}
-
+              {% if user.is_authenticated %}
+                {% include 'wishlist/addtowishlist.html' with product=product wishlist=wishlist %}
+              {% endif %}
             </div>
             <div class="card-content">
               <a href="/productview/{{product.id}}" ><span class="card-title" >{{ product.name }}</span></a>
@@ -35,18 +36,7 @@
             </div>
             <div class="card-action">
                             <h7>Rs. {{product.price}}</h7>
-                <form method="POST" action='{% url "update" %}' class="form">{% csrf_token%}
-                <input type="hidden" name="product_id" value='{{product.id}}'>
-                    {% if in_cart %}
-                   <button type='submit' class="btn btn-link btn-sm">Remove?</button>
-                    {% else %}
-                       {% if product in cart.products.all %}
-                            <small><button type='submit' class="btn btn-link">Remove from cart?</button></small>
-                       {% else %}
-                          <button type='submit' class='btn btn-success'>Add to cart</button>
-                        {% endif %}
-                   {% endif %}
-                   </form>
+             {% include 'carts/addtocart.html' with product=product cart=cart %}
             </div>
           </div>
         </div>

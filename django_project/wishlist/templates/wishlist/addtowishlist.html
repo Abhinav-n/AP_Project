@@ -1,12 +1,12 @@
 <form method="POST" action='{% url "wishlist_update" %}' class="form">{% csrf_token%}
     <input type="hidden" name="product_id" value='{{product.id}}'>
-    {% if in_wishlist %}
+        {% if in_wishlist %}
         <button type='submit' class="btn btn-link btn-sm">Remove?</button>
-    {% else %}
+        {% else %}
         {% if product in wishlist.products.all %}
             <small><button type='submit' class="btn btn-link">Remove from wishlist?</button></small>
         {% else %}
             <button type='submit' class='btn btn-success'>Add to wishlist</button>
         {% endif %}
-    {% endif %}
+        {% endif %}
 </form>
