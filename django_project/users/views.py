@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import UserRegisterForm, EditProfileForm, GuestForm
-from django.contrib.auth.forms import UserChangeForm
+from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
 from .models import GuestEmail
 from django.utils.http import is_safe_url
 from .forms import LoginForm
